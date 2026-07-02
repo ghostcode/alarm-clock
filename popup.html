@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>极简闹钟</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>极简闹钟</h1>
+      <div id="current-time" class="current-time">--:--:--</div>
+    </header>
+
+    <section class="settings">
+      <div class="setting-row">
+        <span>时间格式</span>
+        <div class="segmented" id="time-format">
+          <button data-format="24" class="active">24小时</button>
+          <button data-format="12">12小时</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="editor" class="editor hidden">
+      <h2 id="editor-title">添加闹钟</h2>
+      <div class="form-row">
+        <label>时间</label>
+        <div class="time-picker" id="time-picker">
+          <select id="hour-select" class="time-select"></select>
+          <span class="time-separator">:</span>
+          <select id="minute-select" class="time-select"></select>
+          <select id="ampm-select" class="time-select ampm hidden"></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="alarm-label">标签</label>
+        <input type="text" id="alarm-label" placeholder="例如：起床、会议、喝水" maxlength="30" />
+      </div>
+      <div class="form-row repeat-row">
+        <label>重复</label>
+        <div class="weekdays" id="weekdays">
+          <button type="button" data-day="1">一</button>
+          <button type="button" data-day="2">二</button>
+          <button type="button" data-day="3">三</button>
+          <button type="button" data-day="4">四</button>
+          <button type="button" data-day="5">五</button>
+          <button type="button" data-day="6">六</button>
+          <button type="button" data-day="0">日</button>
+        </div>
+      </div>
+      <div class="editor-actions">
+        <button id="cancel-edit" class="btn btn-ghost">取消</button>
+        <button id="save-alarm" class="btn btn-primary">保存</button>
+      </div>
+    </section>
+
+    <section class="list-section">
+      <div class="list-header">
+        <h2>闹钟列表</h2>
+        <button id="add-alarm" class="btn btn-icon" title="添加闹钟">+</button>
+      </div>
+      <ul id="alarm-list" class="alarm-list"></ul>
+      <div id="empty-state" class="empty-state hidden">
+        <p>还没有闹钟</p>
+        <p>点击右上角 + 添加一个</p>
+      </div>
+    </section>
+  </div>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
