@@ -60,10 +60,3 @@ alarm-clock/
 - 如果长时间没有闹钟触发，Chrome 可能会回收 Service Worker，但 `chrome.alarms` 会在到点前自动唤醒它
 - 所有闹钟时间内部统一保存为 24 小时制 `HH:MM`，显示格式随设置切换
 
-## 开发者
-
-图标可通过 `generate-assets.py` 重新生成：
-
-```bash
-python generate-assets.py
-```
