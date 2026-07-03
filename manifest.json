@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "极简闹钟",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "一个简洁的 Chrome 闹钟扩展，支持多闹钟、重复提醒与通知响铃。",
   "permissions": [
     "storage",

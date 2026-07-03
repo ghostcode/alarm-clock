@@ -13,6 +13,7 @@ const minuteSelect = document.getElementById('minute-select');
 const ampmSelect = document.getElementById('ampm-select');
 const labelInput = document.getElementById('alarm-label');
 const weekdaysEl = document.getElementById('weekdays');
+const repeatPresetsEl = document.getElementById('repeat-presets');
 const timeFormatEl = document.getElementById('time-format');
 
 let editingId = null;
@@ -152,6 +153,19 @@ weekdaysEl.querySelectorAll('button').forEach((btn) => {
     }
   });
 });
+
+// 重复快捷选项
+repeatPresetsEl.querySelectorAll('button').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const days = btn.dataset.days ? btn.dataset.days.split(',').map(Number) : [];
+    setSelectedDays(days);
+  });
+});
+
+function setSelectedDays(days) {
+  selectedDays = new Set(days);
+  renderWeekdayButtons();
+}
 
 // 打开/关闭编辑器
 function openEditor(alarm = null) {
