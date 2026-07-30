@@ -207,6 +207,13 @@ body {
   color: var(--text);
 }
 
+.repeat-presets button.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #0f172a;
+  font-weight: 600;
+}
+
 .weekdays {
   display: flex;
   gap: 6px;

@@ -151,6 +151,7 @@ weekdaysEl.querySelectorAll('button').forEach((btn) => {
       selectedDays.add(day);
       btn.classList.add('active');
     }
+    renderPresetButtons();
   });
 });
 
@@ -165,6 +166,16 @@ repeatPresetsEl.querySelectorAll('button').forEach((btn) => {
 function setSelectedDays(days) {
   selectedDays = new Set(days);
   renderWeekdayButtons();
+  renderPresetButtons();
+}
+
+function renderPresetButtons() {
+  const selected = Array.from(selectedDays).sort((a, b) => a - b);
+  repeatPresetsEl.querySelectorAll('button').forEach((btn) => {
+    const days = btn.dataset.days ? btn.dataset.days.split(',').map(Number) : [];
+    const match = days.length === selected.length && days.every((d, i) => d === selected[i]);
+    btn.classList.toggle('active', match);
+  });
 }
 
 // 打开/关闭编辑器
@@ -185,6 +196,7 @@ function openEditor(alarm = null) {
     selectedDays = new Set();
   }
   renderWeekdayButtons();
+  renderPresetButtons();
   hourSelect.focus();
 }
 
@@ -270,7 +282,7 @@ function formatRepeat(days) {
   if (days.length === 7) return '每天';
   if (days.length === 5 && days.every((d, i) => d === [1, 2, 3, 4, 5][i])) return '工作日';
   if (days.length === 2 && days.every((d, i) => d === [0, 6][i])) return '周末';
-  return days.map((d) => getWeekdayName(d)).join(' ');
+  return days.map((d, i) => (i === 0 ? `周${getWeekdayName(d)}` : `、${getWeekdayName(d)}`)).join('');
 }
 
 function bindAlarmActions() {
